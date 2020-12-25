@@ -8,6 +8,8 @@ import { AuthService } from './service/auth.service';
 })
 export class AppComponent {
   title = 'passwithheroku';
+
+  /* First version => now this section is implemented inside Login component
   email: string;
   password: string;
 
@@ -29,4 +31,5 @@ export class AppComponent {
   logout() {
     this.authService.logout();
   }
+  */
 }

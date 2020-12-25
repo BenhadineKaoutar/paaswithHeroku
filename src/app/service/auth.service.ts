@@ -15,7 +15,9 @@ export class AuthService {
     this.user = firebaseAuth.authState;
   }
   
-
+  /* First version => now this section is implemented inside Login component
+  LOGIN: coco@ben.ma
+  PASSWORD: coco2025
   signup(email: string, password: string) {
     this.firebaseAuth
       .createUserWithEmailAndPassword(email, password)
@@ -37,16 +39,57 @@ export class AuthService {
         console.log('Something went wrong:',err.message);
       });
   }
-
+  
   logout() {
     this.firebaseAuth
       .signOut();
   }
+  */
 
-  signInWithTwitter() {
-    return this.firebaseAuth.signInWithPopup(
-      new firebase.default.auth.TwitterAuthProvider()
-    )
+  /*
+ signInWithTwitter() {
+  return this.firebaseAuth.signInWithPopup(
+    new firebase.default.auth.TwitterAuthProvider()
+  )
+}
+*/
+
+signInWithGithub() {
+  return this.firebaseAuth.signInWithPopup(
+    new firebase.default.auth.GithubAuthProvider()
+  )
+}
+
+signInWithFacebook() {
+  return this.firebaseAuth.signInWithPopup(
+    new firebase.default.auth.FacebookAuthProvider()
+  )
+}
+
+signInWithGoogle() {
+  return this.firebaseAuth.signInWithPopup(
+    new firebase.default.auth.GoogleAuthProvider()
+  )
+}
+
+signInRegular(email, password) {
+    const credential = firebase.default.auth.EmailAuthProvider.credential( email, password );
+
+    return this.firebaseAuth.signInWithEmailAndPassword(email, password)
   }
+
+isLoggedIn() {
+if (this.user == null ) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+
+logout() {
+  this.firebaseAuth.signOut()
+  .then((res) => this.router.navigate(['/']));
+}
 
 }

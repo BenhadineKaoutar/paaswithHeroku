@@ -17,6 +17,7 @@ import {environment} from '../environments/environment';
 
 import {FormsModule} from '@angular/forms';
 import {AuthService} from './service/auth.service';
+import { AuthGuard } from './service/auth-guard.service';
 
 @NgModule ({
   declarations: [
@@ -38,7 +39,8 @@ import {AuthService} from './service/auth.service';
   ],
   providers: [
     AngularFirestoreModule,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
