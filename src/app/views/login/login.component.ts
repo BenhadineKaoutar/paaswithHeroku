@@ -13,8 +13,13 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
+  erreur = true;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) 
+  {
+    this.user.email='';
+    this.user.password='';
+  }
 
 /*
   signInWithTwitter() {
@@ -49,16 +54,36 @@ export class LoginComponent implements OnInit {
          .catch((err) => console.log(err));
     }
 
-    signInWithEmail() {
-      this.authService.signInRegular(this.user.email, this.user.password)
-        .then((res) => {
-          console.log(res);
-          this.router.navigate(['dashboard']);
-        })
-        .catch((err) => console.log('error: ' + err));
-   }
-
-  ngOnInit() {
+  signUp() {
+    this.authService.signUpWithEmail(this.user.email, this.user.password).then((res) => {
+      console.log(res);
+      //this.router.navigate(['dashboard']);
+    })
+    .catch((err) => console.log('error: ' + err));
   }
+
+  
+  signInWithEmail() {
+    this.authService.signInRegular(this.user.email, this.user.password)
+    .then((res) => {
+      console.log(res);
+      this.router.navigate(['dashboard']);
+    })
+    .catch((err) => console.log('error: ' + err));
+    console.log(this.user);
+  }
+/*
+  isAuthenticated() {
+
+    if (this.authService.isLoggedIn()) {
+      sessionStorage.setItem('isConnected', 'true');
+      console.log(localStorage.getItem('isConnected'));
+      this.router.navigateByUrl('/dashboard');
+    } else {
+      this.erreur = false;
+    }
+  }
+*/
+  ngOnInit() {}
 
 }

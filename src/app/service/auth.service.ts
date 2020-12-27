@@ -46,7 +46,7 @@ export class AuthService {
   }
   */
 
-  /*
+  /* Probleme avec la creation du projet on dev.twitter
  signInWithTwitter() {
   return this.firebaseAuth.signInWithPopup(
     new firebase.default.auth.TwitterAuthProvider()
@@ -73,9 +73,20 @@ signInWithGoogle() {
 }
 
 signInRegular(email, password) {
-    const credential = firebase.default.auth.EmailAuthProvider.credential( email, password );
+  const credential = firebase.default.auth.EmailAuthProvider.credential( email, password );
 
-    return this.firebaseAuth.signInWithEmailAndPassword(email, password)
+  return this.firebaseAuth.signInWithEmailAndPassword(email, password)
+}
+
+signUpWithEmail(email: string, password: string) {
+    return this.firebaseAuth
+      .createUserWithEmailAndPassword(email, password)
+      .then(value => {
+        console.log('Registration Success!', value);
+      })
+      .catch(err => {
+        console.log('Something went wrong:',err.message);
+      });
   }
 
 isLoggedIn() {
@@ -88,8 +99,10 @@ if (this.user == null ) {
 
 
 logout() {
+  //sessionStorage.setItem('isConnected', 'false');
   this.firebaseAuth.signOut()
   .then((res) => this.router.navigate(['/']));
+  console.log('log out ');
 }
 
 }

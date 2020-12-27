@@ -23,7 +23,11 @@
                           Login with Email
                         </button>
                     </div>
-                    
+                    <div class="form-group">
+                      <button type="buton" class="btn btn-primary btn-block" style="margin-bottom: 20px" (click)="signUp()" [disabled]="formCtrl.form.invalid">
+                        Sign Up with Email
+                      </button>
+                  </div>
 
                     <div class="form-group">
                         <button type="buton" class="btn btn-block" (click)="signInWithFacebook()">
