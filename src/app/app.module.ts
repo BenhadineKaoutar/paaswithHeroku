@@ -19,6 +19,8 @@ import {FormsModule} from '@angular/forms';
 import {AuthService} from './service/auth.service';
 import { AuthGuard } from './service/auth-guard.service';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule ({
   declarations: [
     AppComponent,
@@ -34,7 +36,8 @@ import { AuthGuard } from './service/auth-guard.service';
     AngularFirestoreModule,
     AngularFireStorageModule,
     FormsModule,
-    AppRoutes
+    AppRoutes,
+    HttpClientModule,
 
   ],
   providers: [
